@@ -3,7 +3,11 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-const ShoppingProductTile = ({ products, handleGetProductDetails }) => {
+const ShoppingProductTile = ({
+  products,
+  handleGetProductDetails,
+  handleAddToCart,
+}) => {
   return (
     <>
       {products?.map((product) => (
@@ -62,6 +66,7 @@ const ShoppingProductTile = ({ products, handleGetProductDetails }) => {
                 className="w-full"
                 onClick={(e) => {
                   e.stopPropagation();
+                  handleAddToCart(product?._id);
                 }}
               >
                 Add to Cart

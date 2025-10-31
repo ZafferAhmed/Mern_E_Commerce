@@ -2,6 +2,7 @@ import CommonForm from "@/components/common/form";
 import { loginFormControls } from "@/config";
 import { useToast } from "@/hooks/use-toast";
 import { loginUser } from "@/store/auth-slice";
+import { fetchCartItems } from "@/store/shop/cartSlice";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,6 +29,7 @@ const AuthLogin = () => {
             description: `Redirecting to ${data?.user.userName}'s dashboard`,
             variant: "success",
           });
+          dispatch(fetchCartItems(data?.user._id));
           setTimeout(() => {
             if (data.user.role === "admin") {
               navigate("/admin/dashboard");

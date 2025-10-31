@@ -21,6 +21,8 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "react-router-dom";
 import ShoppingProductDetails from "./productDetails";
+import { addToCart, fetchCartItems } from "@/store/shop/cartSlice";
+import { useToast } from "@/hooks/use-toast";
 
 const createSearchParamsHelper = (filterParams) => {
   const queryParams = [];
@@ -46,6 +48,8 @@ const ShoppingViewListing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { ProductDetails } = useSelector((state) => state.shopProducts);
   const [isProductDetailsOpen, setIsProductDetailsOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const { toast } = useToast();
 
   const fetchingProducts = async () => {
     setLoading(true);
@@ -98,9 +102,36 @@ const ShoppingViewListing = () => {
     sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   };
 
-  const handleGetProductDetails = async (getCurrenetProductId) => {
-    await dispatch(getProductDetails(getCurrenetProductId));
+  const handleGetProductDetails = async (getCurrentProductId) => {
+    await dispatch(getProductDetails(getCurrentProductId));
     setIsProductDetailsOpen(true);
+  };
+
+  const handleAddToCart = async (getCurrentProductId) => {
+    const data = await dispatch(
+      addToCart({
+        userId: user.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    );
+
+    if (data?.payload?.success) {
+      if (setIsProductDetailsOpen) {
+        setIsProductDetailsOpen(false);
+      }
+      toast({
+        title: data?.payload?.message || "Product added to cart successfully",
+        variant: "success",
+      });
+      await dispatch(fetchCartItems(user.id));
+    } else {
+      toast({
+        title: "Failed to add item",
+        description: data?.payload?.message || "Something went wrong",
+        variant: "destructive",
+      });
+    }
   };
 
   useEffect(() => {
@@ -139,7 +170,6 @@ const ShoppingViewListing = () => {
         filters={filters}
         handleFilterChange={handleFilterChange}
       />
-
       <div className="bg-background w-full rounded-lg shadow-sm">
         <div className="p-4 border-b flex items-center justify-between">
           <h2 className="text-lg font-extrabold">All Products</h2>
@@ -186,6 +216,7 @@ const ShoppingViewListing = () => {
             <ShoppingProductTile
               products={products}
               handleGetProductDetails={handleGetProductDetails}
+              handleAddToCart={handleAddToCart}
             />
           </div>
         )}
@@ -194,6 +225,7 @@ const ShoppingViewListing = () => {
         open={isProductDetailsOpen}
         setOpen={setIsProductDetailsOpen}
         ProductDetails={ProductDetails}
+        handleAddToCart={handleAddToCart}
       />
     </div>
   );

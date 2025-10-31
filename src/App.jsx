@@ -40,7 +40,7 @@ const App = () => {
           description:
             err?.payload?.message ||
             "Unauthorized Access - Invalid or expired token",
-          variant: "destructive",
+          variant: "default",
         });
       });
     const timer = setTimeout(() => {

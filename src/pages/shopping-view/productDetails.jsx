@@ -13,7 +13,12 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-const ShoppingProductDetails = ({ open, setOpen, ProductDetails }) => {
+const ShoppingProductDetails = ({
+  open,
+  setOpen,
+  ProductDetails,
+  handleAddToCart,
+}) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[45vw] rounded-2xl p-0 overflow-hidden">
@@ -156,7 +161,13 @@ const ShoppingProductDetails = ({ open, setOpen, ProductDetails }) => {
           >
             Close
           </Button>
-          <Button variant="default" className="w-full sm:w-auto">
+          <Button
+            className=""
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToCart(ProductDetails?._id);
+            }}
+          >
             Add to Cart
           </Button>
         </DialogFooter>
