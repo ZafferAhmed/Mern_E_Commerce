@@ -18,11 +18,11 @@ import {
   getAllFilteredProducts,
   getProductDetails,
 } from "@/store/shop/productSlice";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "react-router-dom";
 import ShoppingProductDetails from "./productDetails";
 import { addToCart, fetchCartItems } from "@/store/shop/cartSlice";
 import { useToast } from "@/hooks/use-toast";
+import Loader from "@/components/ui/loader";
 
 const createSearchParamsHelper = (filterParams) => {
   const queryParams = [];
@@ -209,7 +209,7 @@ const ShoppingViewListing = () => {
 
         {loading ? (
           <div className="text-center py-10">
-            <Skeleton className="h-10 bg-gray-100 w-full rounded-xl" />
+            <Loader className="h-10 bg-gray-100 w-full rounded-xl" />
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-4">

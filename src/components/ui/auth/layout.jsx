@@ -6,7 +6,7 @@ const AuthLayout = () => {
     <>
       <div className="flex flex-col min-h-screen bg-white w-full border">
         <header className="border h-16 md:h-20 lg:h-24 flex items-center justify-center sticky top-0 z-10 bg-white">
-          <h1 className="text-xl md:text-2xl font-semibold">Auth Header</h1>
+          <h1 className="text-xl md:text-2xl font-semibold">E-Commerce App</h1>
         </header>
 
         <div className="flex flex-1 flex-col lg:flex-row overflow-hidden w-full">
@@ -23,9 +23,9 @@ const AuthLayout = () => {
           </main>
         </div>
 
-        <footer className="h-16 md:h-20 lg:h-24 border-t flex items-center justify-center bg-white">
+        {/* <footer className="h-16 md:h-20 lg:h-24 border-t flex items-center justify-center bg-white">
           <span className="text-lg md:text-xl font-medium">Auth Footer</span>
-        </footer>
+        </footer> */}
       </div>
     </>
   );

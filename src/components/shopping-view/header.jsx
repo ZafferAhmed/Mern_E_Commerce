@@ -77,30 +77,31 @@ const ShoppingViewHeader = () => {
   const HeaderRightContent = () => {
     return (
       <div className="flex items-center gap-4">
-        <Sheet
-          open={openCartSheet}
-          onOpenChange={(isOpen) => setOpenCartSheet(isOpen)}
+        <Button
+          variant="outline"
+          size="icon"
+          className="relative hover:bg-muted transition"
+          onClick={() => {
+            setOpenMenuSheet(false);
+            setOpenCartSheet(true);
+          }}
         >
-          <Button
-            variant="outline"
-            size="icon"
-            className="relative hover:bg-muted transition"
-            onClick={() => {
-              setOpenMenuSheet(false);
-              setOpenCartSheet(true);
-            }}
-          >
-            <ShoppingCart className="h-5 w-5" />
-            {cartItems.length > 0 && (
-              <Badge
-                variant="destructive"
-                className="absolute -top-3 -right-3 px-2 text-[10px] rounded-full"
-              >
-                {cartItems.length}
-              </Badge>
-            )}
-            <span className="sr-only">User Cart</span>
-          </Button>
+          <ShoppingCart className="h-5 w-5" />
+          {cartItems.length > 0 && (
+            <Badge
+              variant="destructive"
+              className="absolute -top-3 -right-3 px-2 text-[10px] rounded-full"
+            >
+              {cartItems.length}
+            </Badge>
+          )}
+          <span className="sr-only">User Cart</span>
+        </Button>
+        <Sheet
+          key="user-cart"
+          open={openCartSheet}
+          onOpenChange={setOpenCartSheet}
+        >
           <UserCartWrapper
             openCartSheet={openCartSheet}
             setOpenCartSheet={setOpenCartSheet}
@@ -114,13 +115,11 @@ const ShoppingViewHeader = () => {
               <AvatarFallback className="bg-black text-white font-semibold">
                 {user?.userName?.charAt(0)?.toUpperCase() ||
                   user?.user?.userName?.charAt(0)?.toUpperCase() || (
-                    <div>
-                      <img
-                        src="https://img.freepik.com/free-vector/isometric-laptop-with-shopping-cart-keypad_1262-16544.jpg"
-                        className="w-full object-cover rounded-full border border-black"
-                        alt="Website Image"
-                      />
-                    </div>
+                    <img
+                      src="https://img.freepik.com/free-vector/isometric-laptop-with-shopping-cart-keypad_1262-16544.jpg"
+                      className="w-full object-cover rounded-full border border-black"
+                      alt="Website Image"
+                    />
                   )}
               </AvatarFallback>
             </Avatar>

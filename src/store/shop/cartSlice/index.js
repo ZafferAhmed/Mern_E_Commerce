@@ -45,7 +45,7 @@ export const updateCartItem = createAsyncThunk(
   "cart/updateCartItem",
   async ({ userId, productId, quantity }, { rejectWithValue }) => {
     try {
-      const result = await axios.patch(
+      const result = await axios.put(
         `${API_URL}/update`,
         { userId, productId, quantity },
         {

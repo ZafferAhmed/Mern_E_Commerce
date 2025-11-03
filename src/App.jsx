@@ -21,7 +21,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
 import Loader from "./components/ui/loader";
 import { useToast } from "./hooks/use-toast";
-import AdminProductDetails from "./pages/admin-view/productDetails";
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useSelector(

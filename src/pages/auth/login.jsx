@@ -18,9 +18,9 @@ const AuthLogin = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData))
+    await dispatch(loginUser(formData))
       .unwrap()
       .then((data) => {
         if (data?.success) {

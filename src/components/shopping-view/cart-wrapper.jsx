@@ -34,4 +34,4 @@ const UserCartWrapper = ({ cartItems }) => {
   );
 };
 
-export default UserCartWrapper;
+export default React.memo(UserCartWrapper);

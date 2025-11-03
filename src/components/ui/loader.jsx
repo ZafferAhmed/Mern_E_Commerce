@@ -4,10 +4,8 @@ import { Skeleton } from "./skeleton";
 const Loader = () => {
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <div className="w-full h-screen p-4 bg-white space-y-4">
-          <Skeleton className="h-48 w-full rounded-xl" />
-
+      <div className="flex items-center justify-center h-full">
+        <div className="w-full h-full p-4 bg-white space-y-4">
           <div className="space-y-2">
             <Skeleton className="h-6 w-3/4" />
             <Skeleton className="h-4 w-1/2" />
@@ -38,7 +36,7 @@ const Loader = () => {
           </div>
           <div className="space-y-2">
             <Skeleton className="h-6 w-3/4" />
-            <Skeleton className="h-4 ̰ w-1/2" />
+            <Skeleton className="h-4 w-1/2" />
           </div>
 
           <div className="space-y-2">
