@@ -58,7 +58,7 @@ const App = () => {
   return (
     <>
       <div className="flex flex-col min-h-screen bg-white">
-        <div className="flex overflow-auto flex-grow">
+        <div className="flex overflow-y-auto flex-grow">
           <Routes>
             <Route
               path="/auth"

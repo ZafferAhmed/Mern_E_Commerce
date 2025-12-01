@@ -12,6 +12,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useDispatch } from "react-redux";
+import { setProductDetails } from "@/store/shop/productSlice";
 
 const ShoppingProductDetails = ({
   open,
@@ -19,8 +21,15 @@ const ShoppingProductDetails = ({
   ProductDetails,
   handleAddToCart,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleDialogClose = () => {
+    setOpen(false);
+    dispatch(setProductDetails());
+  };
+  
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleDialogClose}>
       <DialogContent className="w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[45vw] rounded-2xl p-0 overflow-hidden">
         <DialogHeader className="flex flex-row items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b bg-muted/40">
           <div className="flex items-center gap-3">

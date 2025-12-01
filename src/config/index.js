@@ -154,7 +154,6 @@ export const shoppingViewHeaderMenuItems = [
   },
 ];
 
-
 export const filterOptions = {
   category: [
     { value: "men", label: "Men" },
@@ -184,4 +183,70 @@ export const sortOptions = [
   { id: "price-hightolow", label: "Price: High to Low" },
   { id: "title-atoz", label: "Title: A to Z" },
   { id: "title-ztoa", label: "Title: Z to A" },
+];
+
+export const CarousalImages = [
+  {
+    id: 1,
+    src: "https://plus.unsplash.com/premium_photo-1760559944817-ae2ae2027be1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "New Collections",
+    buttonText: "Explore Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 2,
+    src: "https://framerusercontent.com/assets/2EbnvZVNnHTIVEBqbfTLJWRsyWA.mp4",
+    alt: "Summer Sale Video",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 3,
+    src: "https://plus.unsplash.com/premium_photo-1672883552013-506440b2f11c?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "SALE UP TO 70% OFF",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 4,
+    src: "https://plus.unsplash.com/premium_photo-1760531114812-970ed2f93f98?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "New Arrivals",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 5,
+    src: "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs/99235753/original/db9bf5cc3855d76d7af92a4d9c43e8cea5f75a34/design-creative-web-banners-sliders-carousel.jpg",
+    alt: "FLAT 50% OFF",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 6,
+    src: "https://i.pinimg.com/736x/b6/89/96/b68996b0aeb13339740f961ada455a77.jpg",
+    alt: "Free Shipping Worldwide",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 7,
+    src: "https://images.vexels.com/media/users/3/194698/raw/34d9aa618f832510ce7290b4f183484a-shop-online-slider-template.jpg",
+    alt: "Online Shopping Sale",
+    buttonText: "Buy Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 8,
+    src: "https://cdn.pixabay.com/video/2022/04/25/115069-703067905_large.mp4",
+    alt: "Exclusive Offers Video",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
+  {
+    id: 9,
+    src: "https://cdn.pixabay.com/video/2022/10/31/137242-766338209_large.mp4",
+    alt: "Best Deals Video",
+    buttonText: "Shop Now",
+    link: "/shopping/listing",
+  },
 ];

@@ -7,24 +7,18 @@ import ShoppingViewFooter from "./footer";
 const ShoppingViewLayout = () => {
   return (
     <>
-      <div className="flex flex-col min-h-screen bg-white w-full border">
-        <div className="border flex items-center justify-center">
+      <div className="flex flex-col min-h-screen bg-white w-full">
+        <header className="w-full border flex justify-center items-center">
           <ShoppingViewHeader />
-        </div>
+        </header>
 
-        <div className="flex flex-1 overflow-hidden w-full">
-          {/* <div className="w-fit max-w-64 border-r overflow-auto flex justify-center">
-            <ShoppingViewSidebar />
-          </div> */}
+        <main className="flex-1 overflow-y-auto bg-muted/40 p-4 md:p-6">
+          <Outlet />
+        </main>
 
-          <main className="flex-1 bg-muted/40 p-4 md:p-6 overflow-auto flex">
-            <Outlet />
-          </main>
-        </div>
-
-        <h1 className="h-24 border rounded-lg flex items-center justify-center">
+        <footer className="h-24 border rounded-lg flex items-center justify-center">
           <ShoppingViewFooter />
-        </h1>
+        </footer>
       </div>
     </>
   );

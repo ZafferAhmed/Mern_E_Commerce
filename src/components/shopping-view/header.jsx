@@ -43,9 +43,9 @@ const ShoppingViewHeader = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(fetchCartItems(user.id));
+      dispatch(fetchCartItems(user?.id));
     }
-  }, [isAuthenticated, user.id, dispatch]);
+  }, [isAuthenticated, user?.id, dispatch]);
 
   const handleLogout = () => {
     dispatch(logoutUser()).then((data) => {

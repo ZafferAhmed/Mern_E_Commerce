@@ -10,11 +10,13 @@ import {
   updateCartItem,
 } from "@/store/shop/cartSlice";
 import React from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const UserCartItemsContent = ({ cartItems }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { toast } = useToast();
 
   if (!cartItems?.length) {
     return (
@@ -33,41 +35,28 @@ const UserCartItemsContent = ({ cartItems }) => {
     );
   }
 
-  const handleItemDecrease = async (item) => {
-    try {
-      if (item.quantity <= 1) {
-        await handleCartItemDelete(item);
-        return;
-      }
-
-      const response = await dispatch(
-        updateCartItem({
-          userId: user?.id,
-          productId: item?.productId,
-          quantity: item?.quantity - 1,
-        })
-      ).unwrap();
-
-      if (response?.success) {
-        await dispatch(fetchCartItems(user?.id));
-      }
-    } catch (error) {
-      console.error("Error updating item:", error);
-    }
-  };
-
-  const handleItemIncrease = async (item) => {
+  const handleUpdateQuantity = async (item, state) => {
     try {
       const response = await dispatch(
         updateCartItem({
           userId: user?.id,
           productId: item?.productId,
-          quantity: item?.quantity + 1,
+          quantity:
+            state === "increase" ? item?.quantity + 1 : item?.quantity - 1,
         })
       ).unwrap();
 
       if (response?.success) {
+        toast({
+          title: "Cart item is updated",
+          variant: "success",
+        });
         await dispatch(fetchCartItems(user?.id));
+      } else {
+        toast({
+          title: "Something went wrong",
+          variant: "destructive",
+        });
       }
     } catch (error) {
       console.error("Error updating item:", error);
@@ -81,6 +70,10 @@ const UserCartItemsContent = ({ cartItems }) => {
       ).unwrap();
 
       if (response?.success) {
+        toast({
+          title: "Item removed from cart",
+          variant: "success",
+        });
         await dispatch(fetchCartItems(user.id));
       } else {
         console.log("Something went wrong");
@@ -133,7 +126,8 @@ const UserCartItemsContent = ({ cartItems }) => {
                           variant="ghost"
                           size="icon"
                           className="w-8 h-8 rounded-r-none"
-                          onClick={() => handleItemDecrease(item)}
+                          disabled={item.quantity <= 1}
+                          onClick={() => handleUpdateQuantity(item, "decrease")}
                         >
                           <Minus className="w-3 h-3" />
                           <span className="sr-only">Decrease</span>
@@ -148,7 +142,7 @@ const UserCartItemsContent = ({ cartItems }) => {
                           variant="ghost"
                           size="icon"
                           className="w-8 h-8 rounded-l-none"
-                          onClick={() => handleItemIncrease(item)}
+                          onClick={() => handleUpdateQuantity(item, "increase")}
                         >
                           <Plus className="w-3 h-3" />
                           <span className="sr-only">Increase</span>
